@@ -1,0 +1,27 @@
+# fly.toml file
+
+# Configuración básica
+app = "nombre-de-tu-aplicacion"
+kill_signal = "SIGTERM"
+kill_timeout = 5
+processes = ["app"]
+
+# Rutas de redireccionamiento
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+# Comandos de construcción y ejecución
+[services.concurrency]
+  hard_limit = 1
+  soft_limit = 1
+
+[services.app]
+  # Comando para iniciar tu aplicación
+  cmd = "npm run dev"
+  # Directorio de trabajo de la aplicación
+  work_dir = "/"
+  # Variables de entorno opcionales
+  [services.app.env]
+    TELEGRAM_TOKEN = "6492591348:AAGCIhi00EJD0TYkFDoHXs-biX8KSH_7uyI"
+    PRODIA_API_KEY = "e32449e2-2c9b-4e10-b7de-ccb01255fc0a"
