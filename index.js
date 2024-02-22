@@ -90,7 +90,7 @@ bot.on('text', (msg) => {
 const app = express()
 const port = process.env.PORT || 4000
 app.get('/', (req, res) => {
-  res.status(200),send('Bot funcionando correctamente')
+  res.status(200).send('Bot funcionando correctamente')
 })
 
 app.listen(port, () => {
