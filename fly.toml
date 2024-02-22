@@ -30,3 +30,4 @@ console_command = "node index.js"
 [env]
   TELEGRAM_TOKEN = "6492591348:AAGCIhi00EJD0TYkFDoHXs-biX8KSH_7uyI"
   PRODIA_API_KEY = "e32449e2-2c9b-4e10-b7de-ccb01255fc0a"
+  PORT = "3000"
