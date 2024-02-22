@@ -1,6 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const { generarFraseAleatoria } = require('./bd/phraseGenerator');
 const { ImageGeneratorLogic } = require('./imageGenerator');
+const express = require('express')
 require('dotenv').config()
 const token = process.env.TELEGRAM_TOKEN;
 const bot = new TelegramBot(token, {polling: true});
@@ -86,3 +87,12 @@ bot.on('text', (msg) => {
   });
   }
 });
+const app = express()
+const port = process.env.PORT || 4000
+app.get('/', (req, res) => {
+  res.status(200),send('Bot funcionando correctamente')
+})
+
+app.listen(port, () => {
+  console.log(`App corriendo en el puerto ${port}`)
+})
