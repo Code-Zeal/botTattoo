@@ -1,25 +1,22 @@
-
-const { createImage, checkImage } = require("./api");
-const ImageGeneratorLogic = (frase,style) => {
+const  {HfInference}  = require("@huggingface/inference")
+require('dotenv').config()
+const hf = new HfInference(process.env.HFKEY)
+async function bufferImage(blob) {
+  const arrayBuffer = await blob.arrayBuffer();
+  const buffer = Buffer.from(arrayBuffer);
+  return buffer
+}
+const ImageGeneratorLogic =async (phrase,style) => {
   
-  
-  return new Promise((resolve, reject) => {
-    createImage(frase,style)
-      .then((job) => {
-        setTimeout(() => {
-          checkImage(job)
-            .then((data) => {
-              resolve({url:data.imageUrl,phrase:frase});
-            })
-            .catch((err) => {
-              reject(err);
-            });
-        }, 10000);
-      })
-      .catch((err) => {
-        reject(err);
-      });
-  });
+  const response = await hf.textToImage({
+    inputs: phrase,
+    model: 'artificialguybr/doodle-redmond-doodle-hand-drawing-style-lora-for-sd-xl',
+    parameters: {
+      negative_prompt: 'blurry',
+      
+    }
+  })
+  return await bufferImage(response)
 };
 
 

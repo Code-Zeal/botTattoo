@@ -16,11 +16,9 @@
     "nodemon": "^3.0.3"
   },
   "dependencies": {
-    "api": "^6.1.1",
+    "@huggingface/inference": "^2.6.6",
     "dotenv": "^16.4.2",
     "express": "^4.18.2",
-    "google-translate-api": "^2.3.0",
-    "gramma": "^1.6.0",
     "node-telegram-bot-api": "^0.64.0"
   }
 }
