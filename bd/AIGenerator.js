@@ -21,7 +21,7 @@ const GeneratePhrase = async ()=>{
   })
     const response = await hf.textGeneration({
       model: 'google/flan-t5-xxl',
-      inputs: 'Generate a cool and unique phrase to inspire a tattoo design. It can be unconventional, mysterious, or thought-provoking. This text will be used to create an amazing image through AI-powered generation nvinkpunk. exclude: ' + oldPhrases
+      inputs: 'Generate a cool and unique phrase to inspire a tattoo design. It can be unconventional, mysterious, or thought-provoking. This text will be used to create an amazing image through AI-powered generation nvinkpunk. do not include: ' + oldPhrases
     })
     appendToFile(filePath,response.generated_text)
     return "A drawing of" + response.generated_text
