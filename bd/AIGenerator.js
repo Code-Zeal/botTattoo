@@ -11,7 +11,7 @@ function appendToFile(filePath, text) {
     }
   });
 }
-const GeneratePhrase = async ()=>{
+const GeneratePhrase = async (model)=>{
   try {
   const oldPhrases = await fs.promises.readFile(filePath,"utf8",(err,data)=>{
     if(err){
@@ -20,13 +20,14 @@ const GeneratePhrase = async ()=>{
     return data
   })
     const response = await hf.textGeneration({
-      model: 'google/flan-t5-xxl',
+      model,
       inputs: 'Generate a cool and unique phrase to inspire a tattoo design. It can be unconventional, mysterious, or thought-provoking. This text will be used to create an amazing image through AI-powered generation nvinkpunk. do not include: ' + oldPhrases
     })
     appendToFile(filePath,response.generated_text)
     return "A drawing of" + response.generated_text
 } catch (error) {
   console.log(error); 
+  return {error:error}
 }
 }
 

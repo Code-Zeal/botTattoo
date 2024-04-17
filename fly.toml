@@ -1,33 +1,20 @@
-# fly.toml app configuration file generated for bottatoo on 2024-02-22T01:20:18-04:00
+# fly.toml app configuration file generated for bottatoo on 2024-03-25T13:54:18-04:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'bottatoo'
-primary_region = 'mia'
+primary_region = 'bog'
 
 [build]
-  builder = "heroku/buildpacks:20"
-  buildpacks = ["heroku/nodejs"]
 
 [http_service]
   internal_port = 3000
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = false
   auto_start_machines = true
-  min_machines_running = 0
+  min_machines_running = 1
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-
-kill_signal = "SIGTERM"
-kill_timeout = 10
-console_command = "node index.js"
-
-[env]
-  TELEGRAM_TOKEN = "6492591348:AAGCIhi00EJD0TYkFDoHXs-biX8KSH_7uyI"
-  PRODIA_API_KEY = "e32449e2-2c9b-4e10-b7de-ccb01255fc0a"
-  PORT = "3000"
+  size = 'shared-cpu-1x'
